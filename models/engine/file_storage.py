@@ -17,8 +17,8 @@ class FileStorage:
 
     def save(self):
         with open(self.__file_path, "w") as Sfile:
-            json.dump(self.__file_path, Sfile)
-    
+            json.dump(self.__objects, Sfile)
+
     def reload(self):
         with open(self.__file_path, "r") as Sfile:
-            json.load(self.__file_path, Sfile)
+            self.__objects = json.load(Sfile)
