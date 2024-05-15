@@ -3,6 +3,7 @@
 This will define the BaseModel class functioning as
 the base class for all models."""
 
+from models import storage
 from datetime import datetime
 import uuid
  
@@ -20,6 +21,7 @@ class BaseModel:
             self.created_at = self.created_at.isoformat()
             self.updated_at = datetime.now()
             self.updated_at = self.updated_at.isoformat()
+            storage.new(self)
     
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
@@ -27,6 +29,7 @@ class BaseModel:
     def save(self):
         self.updated_at = datetime.now()
         self.updated_at = self.updated_at.isoformat()
+        storage.save()
     
     def to_dict(self):
         b_dict = self.__dict__.copy()
