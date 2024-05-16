@@ -3,9 +3,9 @@
 This will define the BaseModel class functioning as
 the base class for all models."""
 
-from models import storage
+import models
 from datetime import datetime
-import uuid
+from uuid import uuid4
  
 
 class BaseModel:
