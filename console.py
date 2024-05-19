@@ -37,8 +37,8 @@ class HBNBCommand(Cmd):
 
     def do_create(self, args):
         """Create an instance of BaseModel and save it
-        to JSON given its name eg.$ create ModelName 
-        print out Error if ModelName is missing or doesn't exist"""
+        to JSON given its name eg.$ create ModelName
+        print out Error if ModelName missing or doesn't exist"""
         args, n = parse(args)
 
         if not n:
@@ -55,9 +55,9 @@ class HBNBCommand(Cmd):
             pass
 
     def do_show(self, arg):
-        """Prints the string representation of an instance based on the class name
-        and id eg.$ show MyModel instance_id
-        Prints out if class name missing or dont exist"""
+        """Prints the string representation of an instance
+        based on the class name and id eg.$ show MyModel
+        instance_id and prints out if class name missing or dont exist"""
         args, n = parse(arg)
 
         if not n:
