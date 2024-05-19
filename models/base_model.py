@@ -7,6 +7,7 @@ the base class for all models."""
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     """The Base class of all Classes"""
     def __init__(self):
@@ -17,7 +18,7 @@ class BaseModel:
     def __str__(self):
         """ print id , name"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
-    
+
     def save(self):
         """ save created time"""
         self.updated_at = datetime.now()
@@ -29,5 +30,3 @@ class BaseModel:
         b_dict["created_at"] = b_dict["created_at"].isoformat()
         b_dict["updated_at"] = b_dict["updated_at"].isoformat()
         return b_dict
-
-
