@@ -16,9 +16,23 @@ class FileStorage:
         self.__objects[obj.id] = obj
 
     def save(self):
-        with open(self.__file_path, "w") as Sfile:
-            json.dump(self.__objects, Sfile)
+        s_objects = {}
+        for key, obj in self.__objects.items():
+            s_objects[key] = obj.to_dict()
+
+        with open(self.__file_path, "w") as file:
+            json.dump(s_objects, file)
+
 
     def reload(self):
-        with open(self.__file_path, "r") as Sfile:
-            self.__objects = json.load(Sfile)
+        try:
+            with open(self.__file_path, "r") as file:
+                data = json.load(file)
+                for key, value in data.items():
+                    class_name, obj_id = key.split(".")
+                    module = __import__("models." + class_name, fromlist=[class_name])
+                    obj_class = getattr(module, class_name)
+                    obj_instance = obj_class(**value)
+                    self.__objects[key] = obj_instance
+        except FileNotFoundError:
+            pass
