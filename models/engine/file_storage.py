@@ -1,16 +1,30 @@
 #!/usr/bin/python3
-""" storage class"""
+""" storage system for the project"""
 
 
 import json
+from datetime import datetime
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 
 class FileStorage:
     """ save in json """
-    __file_path = "file.json"
-    __objects = {}
+    __file_path: str = "file.json"
+    __objects: dict = {}
+    models = ("BaseModel", "Amenity", "Review", "State", "Place",
+            "City", "User")
 
-    def all(self):
-        return self.__objects
+    def __init__(self):
+        pass
+
+    def all(self, obj):
+        return FileStorage.__objects
     
     def new(self, obj):
         self.__objects[obj.id] = obj
