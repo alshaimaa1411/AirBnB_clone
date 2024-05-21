@@ -14,26 +14,28 @@ class BaseModel:
         """The Constructor to deserialize or initialize a class"""
 
         # initialization
-        if kwargs == {}:
+        if kwargs == {} or None:
             self.id = str(uuid4())
-            self.created_at = datetime.utcnow()
-            self.updated_at = datetime.utcnow()
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             models.storage.new(self)
-            return
+        else:
 
         # deserialization
-        for key, val in kwargs.items():
-            if key == '__class__':
-                continue
-            self.__dict__[key] = val
-        if 'created_at' in kwargs:
-            self.created_at = datetime.strptime(
+            for key, val in kwargs.items():
+                if key == '__class__':
+                    continue
+                self.__dict__[key] = val
+            if 'created_at' in kwargs:
+                self.created_at = datetime.strptime(
                     kwargs['created_at'],
                     '%Y-%m-%dT%H:%M:%S.%f')
-        if 'updated_at' in kwargs:
-            self.updated_at = datetime.strptime(
+            if 'updated_at' in kwargs:
+                self.updated_at = datetime.strptime(
                     kwargs['updated_at'],
                     '%Y-%m-%dT%H:%M:%S.%f')
+            else:
+                self.__dict__[key] = kwargs[key]
 
     def __str__(self):
         """bypass self representation of str"""
