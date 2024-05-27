@@ -55,7 +55,7 @@ h4{
     margin-top: 22px;
     margin-left: -41px;
     height: 200px;
-    list-style-type: none;
+    list-style: none;
 
 }
 .locations:hover .popover, .amenities:hover .popover{
@@ -64,8 +64,17 @@ h4{
 
 .popover ul, .popover li {
   line-height: 160%;
+  list-style: none;
 }
 .amenities .popover{
   padding-top: 20px;
   height: 150%
+}
+.popover h2{
+    font-size: 16px;
+    margin-left: -40px;
+    margin-bottom: -3px;
+}
+.popover li{
+    margin-left: -15px;
 }
